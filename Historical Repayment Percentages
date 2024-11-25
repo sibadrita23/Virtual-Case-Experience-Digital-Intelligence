@@ -1,0 +1,10 @@
+# Assuming data contains columns with monthly repayments starting from column 3
+historical_cf = data.iloc[:, 3:].values  # Cash flow data from columns 3 onward
+origination_amount = data.iloc[:, 2].values  # Origination amounts for each vintage
+
+# Calculate repayment percentages (observed repayments as a percentage of origination)
+paid_percentages = historical_cf / origination_amount[:, None]
+
+# Display the historical repayment percentages
+paid_percentages_df = pd.DataFrame(paid_percentages, columns=[f'Month_{i+1}' for i in range(historical_cf.shape[1])])
+paid_percentages_df.head()
