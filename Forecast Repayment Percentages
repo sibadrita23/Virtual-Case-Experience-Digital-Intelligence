@@ -1,0 +1,27 @@
+n_forecast = 30  # Number of future periods (months after December 2020)
+n_vintage = data.shape[0]  # Number of vintages (loans)
+
+# Initialize repayment percentages for future periods
+p = np.zeros((n_vintage, n_forecast))  # Matrix to hold repayment percentages for forecast periods
+
+# First and second period repayment percentages
+first_period = np.diag(paid_percentages)  # Diagonal entries for the first period
+second_period = np.zeros(n_vintage)
+
+# For the last vintage, assume the second repayment period is twice the first period's repayment
+second_period[-1] = 2 * first_period[-1]
+
+# Fill in the repayment percentages for the first two months
+p[:, 0] = first_period
+p[:, 1] = second_period
+
+# Forecast repayments for subsequent months using the given formula (or assumptions)
+for i in range(n_vintage):
+    for j in range(2, n_forecast):
+        p[i, j] = max(0, p[i, 1] * np.log(1 + (1 - np.sum(p[i, :j]))) * (1 - (j) / n_forecast))
+
+# Convert the forecasted repayment percentages into a DataFrame
+forecasted_df = pd.DataFrame(p, columns=[f'Forecast_Month_{i+1}' for i in range(n_forecast)])
+
+# Display the forecasted repayment percentages
+forecasted_df.head()
