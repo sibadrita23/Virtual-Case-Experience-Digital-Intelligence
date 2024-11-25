@@ -1,0 +1,9 @@
+# Define parameters for forecast periods and discount rate
+n_forecast = 30  # Number of forecast periods
+n_vintage = len(data)  # Number of vintages
+
+discount_rate = 0.025  # Annual discount rate
+
+# Extract historical repayment data (assuming it starts from the 3rd column onward)
+historical_cf = data.iloc[:, 2:].values  # Historical cash flows (from column 3 onwards)
+amount_originated = data.iloc[:, 1].values  # Amount originated for each vintage (second column)
