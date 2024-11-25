@@ -1,0 +1,8 @@
+# Create project directory
+mkdir portfolio-valuation
+
+# Navigate into the project directory
+cd portfolio-valuation
+
+# Initialize Git repository
+git init
