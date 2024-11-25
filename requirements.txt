@@ -1,0 +1,2 @@
+# Freeze the installed libraries to requirements.txt
+pip freeze > requirements.txt
