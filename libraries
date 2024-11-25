@@ -1,0 +1,2 @@
+# Install necessary Python libraries
+pip install pandas numpy matplotlib scipy
