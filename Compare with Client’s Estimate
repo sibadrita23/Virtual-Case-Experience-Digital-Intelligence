@@ -1,0 +1,16 @@
+# Client's estimated portfolio value
+client_estimate = 84993122.67
+
+# Calculate the absolute and relative differences
+absolute_difference = abs(portfolio_value - client_estimate)
+relative_difference = (absolute_difference / client_estimate) * 100
+
+# Print the differences
+print(f"Absolute difference: CHF {absolute_difference:,.2f}")
+print(f"Relative difference: {relative_difference:.2f}%")
+
+# Check if the difference is within the acceptable threshold
+if absolute_difference < 500000:
+    print("The difference is acceptable.")
+else:
+    print("The difference is too large.")
